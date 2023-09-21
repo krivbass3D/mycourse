@@ -1,0 +1,18 @@
+<div class="msmycourses_wrapper">
+          {{#show_alt_view}}{{> block_msmycourses2/switch_view }}{{/show_alt_view}}
+  {{#header}}
+        {{> block_msmycourses2/header_category }}
+  {{/header}}
+<div class="items {{display_type}} {{num_tiles}}">
+  {{#slider}}
+          {{> block_msmycourses2/course_slider }}                
+  {{/slider}}
+  {{^slider}}
+
+            {{#records}}
+                    {{> block_msmycourses2/item }}
+            {{/records}}
+  {{/slider}}
+</div>
+  {{#next}}{{> block_msmycourses2/more }}{{/next}}
+</div>

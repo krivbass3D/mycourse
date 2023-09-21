@@ -1,0 +1,19 @@
+{{^two_icon_switch}}
+      <div class="switch_view_wrapper">
+          <div class="switch_view target_{{target_display}}" data-current={{current}} data-currentview={{current_view}} data-target={{target_view}}></div>
+      </div>
+{{/two_icon_switch}}
+{{#two_icon_switch}}
+    {{#current_view}}
+    <div class="switch_view_wrapper">
+      <div class="switch_view target_{{target_display}}" data-current={{current}} data-currentview={{current_view}} data-target={{target_view}}></div>
+      <div class="current_view current_{{display_type}}"></div>
+    </div>
+    {{/current_view}}
+    {{^current_view}}
+    <div class="switch_view_wrapper">
+      <div class="current_view current_{{display_type}}"></div>
+      <div class="switch_view target_{{target_display}}" data-current={{current}} data-currentview={{current_view}} data-target={{target_view}}></div>
+    </div>
+    {{/current_view}}
+{{/two_icon_switch}}

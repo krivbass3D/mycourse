@@ -1,0 +1,34 @@
+<div class="swiper-slide swiper-lazy item course{{#level}} level{{level}}{{/level}}{{#show_favorites}} show_favorite{{/show_favorites}}{{#summary}} summary{{/summary}}" {{#level}}data-level={{level}}{{/level}}>
+        <a href={{{config.wwwroot}}}/course/view.php?id={{id}}>
+                <div class="title">
+                        {{{title}}}
+                </div>
+                {{#summary}}
+                    <div class="content">
+                            {{{summary}}}
+                    </div>
+                {{/summary}}
+                {{#is_compact_view}}
+                    <div class="category_path">
+                            {{path}}
+                    </div>
+                {{/is_compact_view}}
+                {{#show_progress}}
+                        {{#progress_type}}
+                                {{> local_mscore/progress_pie}}
+                        {{/progress_type}}
+                        {{^progress_type}}
+                                {{> local_mscore/progress_bar}}
+                        {{/progress_type}}
+                {{/show_progress}}
+        </a>
+        <div class="swiper-lazy-preloader"></div>
+        {{#show_favorites}}
+              {{> block_msmycourses2/favorite}}
+        {{/show_favorites}}
+        {{#certificate_link}}
+                <div class="certlink">
+                <a href="{{{config.wwwroot}}}/mod/mscertificate/download.php?id={{certificate_link}}&download=1" alt="{{#str}}issue_download,mod_mscertificate{{/str}}">{{#pix}}t/download, core, {{#str}}issue_download,mod_mscertificate{{/str}}{{/pix}}</a>
+                </div>
+        {{/certificate_link}}
+</div>

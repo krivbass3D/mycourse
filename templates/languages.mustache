@@ -1,0 +1,10 @@
+
+{{#has_languages}}
+        <div class="available_languages">
+                {{#available_languages}}
+                        <div class="language language_{{{lang}}}">
+                                <img class="icon" src="{{{icon_url}}}" title="{{{lang_name}}}" />
+                        </div>
+                {{/available_languages}}
+        </div>
+{{/has_languages}}

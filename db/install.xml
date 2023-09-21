@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/msmycourses2/db" VERSION="2021120700"
+       COMMENT="XMLDB file for Moodle blocks/msmycourses2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+	        <TABLES>
+               <TABLE NAME="block_msmycourses2_savestate" COMMENT="Contains user savestates">
+                        <FIELDS>
+                              <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                              <FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                              <FIELD NAME="block" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                              <FIELD NAME="category" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                              <FIELD NAME="type" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+                              <FIELD NAME="alt_view" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+                              <FIELD NAME="value" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                              <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT= "0" SEQUENCE="false"/>
+                        </FIELDS>
+                        <KEYS>
+                              <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                        </KEYS>
+               </TABLE>
+          </TABLES>
+</XMLDB>

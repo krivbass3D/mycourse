@@ -1,0 +1,12 @@
+{{#is_compact_view}}
+    <div class="compact_selector_wrapper">
+          <div class="compact_selector_compact selected">{{#str}}compact_view,block_msmycourses2{{/str}}</div>
+          <div class="compact_selector_normal target_normal" data-current={{current}} data-id={{id}}>{{#str}}normal_view,block_msmycourses2{{/str}}</div>
+    </div>
+{{/is_compact_view}}
+{{^is_compact_view}}
+    <div class="compact_selector_wrapper">
+          <div class="compact_selector_compact target_compact" data-current={{current}} data-id={{id}}>{{#str}}compact_view,block_msmycourses2{{/str}}</div>
+          <div class="compact_selector_normal selected">{{#str}}normal_view,block_msmycourses2{{/str}}</div>
+    </div>
+{{/is_compact_view}}

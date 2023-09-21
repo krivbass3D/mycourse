@@ -1,0 +1,22 @@
+<div class="msmycourses_wrapper">
+          {{#show_alt_view}}{{> block_msmycourses2/switch_view }}{{/show_alt_view}}
+            {{#header}}{{> block_msmycourses2/header_category }}{{/header}}
+  <div class="page list">
+        {{#prev}}<div class="prev" data-current={{current}} data-currentview={{current_view}} data-prev=1>{{#pix}}t/left,core{{/pix}}</div>{{/prev}}
+        {{^prev}}<div class="prev"></div>{{/prev}}
+        <div class="items {{display_type}} page_list {{num_tiles}}"> 
+  {{#slider}}
+          {{> block_msmycourses2/course_slider }}                
+  {{/slider}}
+  {{^slider}}
+
+            {{#records}}
+                    {{> block_msmycourses2/item }}
+            {{/records}}
+  {{/slider}}
+        </div>
+        {{#next}}<div class="next" data-current={{current}} data-currentview={{current_view}}>{{#pix}}t/right,core{{/pix}}</div>{{/next}}
+        {{^next}}<div class="next" data-current="0" data-currentview={{current_view}}><i class="icon fa fa-undo" aria-hidden="true"></i>
+</div>{{/next}}
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="msmycourses_wrapper">
+          {{#show_alt_view}}{{> block_msmycourses2/switch_view }}{{/show_alt_view}}
+  <div class="items menu tiles{{num_tiles}} {{diagram_type}}">
+  <div class="header"><h2>{{header}}</h2></div>
+        {{#records}}
+            {{> block_msmycourses2/menu_item }}
+        {{/records}}
+  
+  {{#show_back}}{{> block_msmycourses2/back }}{{/show_back}}
+  </div>
+</div>

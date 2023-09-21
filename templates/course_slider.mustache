@@ -1,0 +1,16 @@
+{{#has_courses}}
+    <div class="swiper" data-count={{has_courses}}>
+        <div class="swiper-button-prev">{{#pix}}t/left,core{{/pix}}</div>
+        <div class="swiper-wrapper">
+                {{#records}}
+                        {{> block_msmycourses2/slider_item }}
+                {{/records}}
+        </div>
+        <div class="swiper-button-next">{{#pix}}t/right,core{{/pix}}</div>
+    </div>
+{{/has_courses}}
+<div class="categories">
+{{#children}}
+        {{> block_msmycourses2/child_category }}
+{{/children}}
+</div>
