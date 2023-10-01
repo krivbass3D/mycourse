@@ -54,7 +54,6 @@ Feature: Testing the mycourse block. Testing "Basic configuration"
       | book     | activity2 | c4 |
       | resource | activity3 | c4 |
 
-  And pause
   Scenario: Set Title and Course Title. Disable summary. Display.
     Given I log in as "teacher1"
 
@@ -120,7 +119,6 @@ Feature: Testing the mycourse block. Testing "Basic configuration"
     And ".items.menu.tiles" "css_element" should be visible
     And ".list" "css_element" should not be visible
     And ".tiles" "css_element" should be visible
-    And pause
     And I click on "Category A" "text"
     And I should see "course3 c3" in the "Courses and courses" "block"
     And I should see "course1 c1" in the "Courses and courses" "block"
