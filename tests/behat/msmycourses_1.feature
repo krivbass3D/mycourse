@@ -54,6 +54,7 @@ Feature: Testing the msmycourses2 block. Testing "Basic configuration"
       | book     | activity2 | c4 |
       | resource | activity3 | c4 |
 
+  And pause
   Scenario: Set Title and Course Title. Disable summary. Display.
     Given I log in as "teacher1"
 
