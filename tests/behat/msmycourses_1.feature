@@ -17,6 +17,7 @@ Feature: Testing the msmycourses2 block. Testing "Basic configuration"
       | student1 | student1@test.test |
       | student2 | student2@test.test |
       | teacher1 | teacher@test.test  |
+    And pause
     And the following "categories" exist:
       | name        | category    | idnumber |
       | Category A  | 0           | 1cat     |
