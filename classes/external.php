@@ -4,11 +4,11 @@ defined('MOODLE_INTERNAL') || die;
 
 require_once("$CFG->libdir/externallib.php");
 
-class block_msmycourses2_external extends external_api {
+class block_mycourse_external extends external_api {
 
     public static function show_more_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'blockid' => new external_value(PARAM_INT, 'id of msmycourses2 block', VALUE_DEFAULT),
+            'blockid' => new external_value(PARAM_INT, 'id of mycourse block', VALUE_DEFAULT),
             'offset'  => new external_value(PARAM_INT, 'result offset', VALUE_DEFAULT),
             'prev'    => new external_value(PARAM_INT, 'whether to go back',VALUE_DEFAULT,0),
             'current_view' => new external_value(PARAM_INT, 'standard or alternate display type',VALUE_DEFAULT,0),
@@ -33,7 +33,7 @@ class block_msmycourses2_external extends external_api {
                   return false;
         }
 
-        if (!$block = block_instance('msmycourses2', $instance)) {
+        if (!$block = block_instance('mycourse', $instance)) {
                   return false;
         }
 
@@ -77,7 +77,7 @@ class block_msmycourses2_external extends external_api {
             }
         }
 
-        $builder = new block_msmycourses2\builder($block->config,$blockid,$alt_view,$switch_view,$load_savestate);
+        $builder = new block_mycourse\builder($block->config,$blockid,$alt_view,$switch_view,$load_savestate);
         return $builder->generate_output($count,$offset,$prev);
 
     }
@@ -161,7 +161,7 @@ class block_msmycourses2_external extends external_api {
 
     public static function load_menu_category_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'blockid' => new external_value(PARAM_INT, 'id of msmycourses2 block', VALUE_DEFAULT),
+            'blockid' => new external_value(PARAM_INT, 'id of mycourse block', VALUE_DEFAULT),
             'category_id'  => new external_value(PARAM_INT, 'result offset', VALUE_DEFAULT),
             'current_view' => new external_value(PARAM_INT, 'standard or alternate display type',VALUE_DEFAULT,0),
             'switch_view' => new external_value(PARAM_INT, 'switch or keep display type',VALUE_DEFAULT,0)
@@ -183,7 +183,7 @@ class block_msmycourses2_external extends external_api {
                   return false;
         }
 
-        if (!$block = block_instance('msmycourses2', $instance)) {
+        if (!$block = block_instance('mycourse', $instance)) {
                   return false;
         }
 
@@ -193,7 +193,7 @@ class block_msmycourses2_external extends external_api {
             if(!empty($current_view)) {
                 $category_id = $block->config->top_category;
                 if(!empty($block->config->database)) {
-                    $savestate = new block_msmycourses2\savestates($blockid,$alt_view);
+                    $savestate = new block_mycourse\savestates($blockid,$alt_view);
                     if(!empty($record = $savestate->get_menu_savestate())) {
                         $category_id = $record->category;
                     }
@@ -203,7 +203,7 @@ class block_msmycourses2_external extends external_api {
                 $category_id = $block->config->alt_top_category;
                 $alt_view = true;
                 if(!empty($block->config->database)) {
-                    $savestate = new block_msmycourses2\savestates($blockid,$alt_view);
+                    $savestate = new block_mycourse\savestates($blockid,$alt_view);
                     if(!empty($record = $savestate->get_menu_savestate(1))) {
                         $category_id = $record->category;
                     }
@@ -216,7 +216,7 @@ class block_msmycourses2_external extends external_api {
             }
         }
 
-        $builder = new block_msmycourses2\builder($block->config,$blockid,$alt_view,$switch_view,false);
+        $builder = new block_mycourse\builder($block->config,$blockid,$alt_view,$switch_view,false);
         return $builder->load_menu_category($category_id);
     }
 
@@ -277,7 +277,7 @@ class block_msmycourses2_external extends external_api {
 
     public static function load_category_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'blockid' => new external_value(PARAM_INT, 'id of msmycourses2 block', VALUE_DEFAULT),
+            'blockid' => new external_value(PARAM_INT, 'id of mycourse block', VALUE_DEFAULT),
             'category_id'  => new external_value(PARAM_INT, 'result offset', VALUE_DEFAULT),
             'level' => new external_value(PARAM_INT, 'hierarchy level', VALUE_DEFAULT),
             'current_view' => new external_value(PARAM_INT, 'standard or alternate display type',VALUE_DEFAULT,0),
@@ -302,7 +302,7 @@ class block_msmycourses2_external extends external_api {
                   return false;
         }
 
-        if (!$block = block_instance('msmycourses2', $instance)) {
+        if (!$block = block_instance('mycourse', $instance)) {
                   return false;
         }
 
@@ -315,7 +315,7 @@ class block_msmycourses2_external extends external_api {
                   $alt_view = true;
         }
 
-        $builder = new block_msmycourses2\builder($block->config,$blockid,$alt_view,false,$load_savestate,$use_compact_view,$load_compact_savestate);
+        $builder = new block_mycourse\builder($block->config,$blockid,$alt_view,false,$load_savestate,$use_compact_view,$load_compact_savestate);
         return $builder->load_category($category_id,$level,0,$count,$offset,$prev);
     }
 
@@ -387,7 +387,7 @@ class block_msmycourses2_external extends external_api {
 
     public static function initial_load_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'blockid' => new external_value(PARAM_INT, 'id of msmycourses2 block', VALUE_DEFAULT),
+            'blockid' => new external_value(PARAM_INT, 'id of mycourse block', VALUE_DEFAULT),
         ]);
     }
 
@@ -407,19 +407,19 @@ class block_msmycourses2_external extends external_api {
                 return false;
         }
 
-        if (!$block = block_instance('msmycourses2', $instance)) {
+        if (!$block = block_instance('mycourse', $instance)) {
                 return false;
         }
         $alt_view = false;
 
         if(!empty($block->config->database)) {
-            $savestate = new block_msmycourses2\savestates($blockid);
+            $savestate = new block_mycourse\savestates($blockid);
             if(!empty($savestate->get_altview_savestate())) {
                 $alt_view = true;
             }
         }
 
-        $builder = new block_msmycourses2\builder($block->config,$blockid,$alt_view);
+        $builder = new block_mycourse\builder($block->config,$blockid,$alt_view);
         $returnarray = $builder->generate_output($block->config->limit,0,false);
 
         if (empty(count($returnarray['records'])) && empty(count($returnarray['children']))) {

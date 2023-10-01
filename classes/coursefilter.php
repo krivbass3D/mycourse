@@ -1,6 +1,6 @@
 <?php
 
-namespace block_msmycourses2;
+namespace block_mycourse;
 use core_course_category;
 require_once($CFG->libdir.'/completionlib.php');
 

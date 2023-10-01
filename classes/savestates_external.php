@@ -4,11 +4,11 @@ defined('MOODLE_INTERNAL') || die;
 
 require_once("$CFG->libdir/externallib.php");
 
-class block_msmycourses2_savestates_external extends external_api {
+class block_mycourse_savestates_external extends external_api {
 
     public static function alt_view_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'blockid' => new external_value(PARAM_INT, 'id of msmycourses2 block', VALUE_DEFAULT),
+            'blockid' => new external_value(PARAM_INT, 'id of mycourse block', VALUE_DEFAULT),
         ]);
     }
 
@@ -26,13 +26,13 @@ class block_msmycourses2_savestates_external extends external_api {
             return null;
         }
 
-        if (!$block = block_instance('msmycourses2', $instance)) {
+        if (!$block = block_instance('mycourse', $instance)) {
             return null;
         }
 
         if(!empty($block->config->database)) {
 
-            $savestate = new block_msmycourses2\savestates($blockid);
+            $savestate = new block_mycourse\savestates($blockid);
 
             if(!empty($savestate->get_altview_savestate())) {
                 $savestate->remove_savestate('alt_view',0,0);
@@ -54,7 +54,7 @@ class block_msmycourses2_savestates_external extends external_api {
 
     public static function menu_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'blockid' => new external_value(PARAM_INT, 'id of msmycourses2 block', VALUE_DEFAULT),
+            'blockid' => new external_value(PARAM_INT, 'id of mycourse block', VALUE_DEFAULT),
             'category_id' => new external_value(PARAM_INT, 'currently shown menu category', VALUE_DEFAULT),
             'current_view' => new external_value(PARAM_BOOL, 'standard or alternate display type',VALUE_DEFAULT,0),
         ]);
@@ -74,13 +74,13 @@ class block_msmycourses2_savestates_external extends external_api {
             return null;
         }
 
-        if (!$block = block_instance('msmycourses2', $instance)) {
+        if (!$block = block_instance('mycourse', $instance)) {
             return null;
         }
 
         if(!empty($block->config->database)) {
 
-            $savestate = new block_msmycourses2\savestates($blockid,$current_view);
+            $savestate = new block_mycourse\savestates($blockid,$current_view);
             $savestate->add_savestate('menu',$category_id);
 
         }
@@ -96,7 +96,7 @@ class block_msmycourses2_savestates_external extends external_api {
 
     public static function page_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'blockid' => new external_value(PARAM_INT, 'id of msmycourses2 block', VALUE_DEFAULT),
+            'blockid' => new external_value(PARAM_INT, 'id of mycourse block', VALUE_DEFAULT),
             'current' => new external_value(PARAM_INT, 'currently shown menu category', VALUE_DEFAULT,0),
             'current_view' => new external_value(PARAM_BOOL, 'standard or alternate display type',VALUE_DEFAULT,0),
         ]);
@@ -116,7 +116,7 @@ class block_msmycourses2_savestates_external extends external_api {
             return null;
         }
 
-        if (!$block = block_instance('msmycourses2', $instance)) {
+        if (!$block = block_instance('mycourse', $instance)) {
             return null;
         }
 
@@ -128,7 +128,7 @@ class block_msmycourses2_savestates_external extends external_api {
 
             $count = $current_view ? $block->config->alt_more_limit : $block->config->more_limit;
             $current -= $count;
-            $savestate = new block_msmycourses2\savestates($blockid,$current_view);
+            $savestate = new block_mycourse\savestates($blockid,$current_view);
             $savestate->add_savestate('page',0,$current);
 
         }
@@ -144,7 +144,7 @@ class block_msmycourses2_savestates_external extends external_api {
 
     public static function collapse_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'blockid' => new external_value(PARAM_INT, 'id of msmycourses2 block', VALUE_DEFAULT),
+            'blockid' => new external_value(PARAM_INT, 'id of mycourse block', VALUE_DEFAULT),
             'category' => new external_value(PARAM_INT, 'category', VALUE_DEFAULT),
             'current_view' => new external_value(PARAM_BOOL, 'standard or alternate display type',VALUE_DEFAULT,0),
             'type' => new external_value(PARAM_TEXT, 'open or close', VALUE_DEFAULT),
@@ -165,13 +165,13 @@ class block_msmycourses2_savestates_external extends external_api {
             return null;
         }
 
-        if (!$block = block_instance('msmycourses2', $instance)) {
+        if (!$block = block_instance('mycourse', $instance)) {
             return null;
         }
 
         if(!empty($block->config->database)) {
 
-            $savestate = new block_msmycourses2\savestates($blockid,$current_view);
+            $savestate = new block_mycourse\savestates($blockid,$current_view);
 
             if($type == 'close') {
                 $savestate->remove_savestate('collapse',$category);
@@ -192,7 +192,7 @@ class block_msmycourses2_savestates_external extends external_api {
 
     public static function compact_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'blockid' => new external_value(PARAM_INT, 'id of msmycourses2 block', VALUE_DEFAULT),
+            'blockid' => new external_value(PARAM_INT, 'id of mycourse block', VALUE_DEFAULT),
           'category' => new external_value(PARAM_INT, 'category', VALUE_DEFAULT),
           'current_view' => new external_value(PARAM_BOOL, 'standard or alternate display type',VALUE_DEFAULT,0),
           'compact' => new external_value(PARAM_BOOL, 'compact view or not', VALUE_DEFAULT),
@@ -213,13 +213,13 @@ class block_msmycourses2_savestates_external extends external_api {
             return false;
         }
 
-        if (!$block = block_instance('msmycourses2', $instance)) {
+        if (!$block = block_instance('mycourse', $instance)) {
             return false;
         }
 
         if(!empty($block->config->database)) {
 
-            $savestate = new block_msmycourses2\savestates($blockid,$current_view);
+            $savestate = new block_mycourse\savestates($blockid,$current_view);
 
             if(empty($compact)) {
                 $savestate->remove_savestate('compact',$category);
@@ -240,7 +240,7 @@ class block_msmycourses2_savestates_external extends external_api {
 
     public static function slider_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'blockid' => new external_value(PARAM_INT, 'id of msmycourses2 block', VALUE_DEFAULT),
+            'blockid' => new external_value(PARAM_INT, 'id of mycourse block', VALUE_DEFAULT),
             'category' => new external_value(PARAM_INT, 'category', VALUE_DEFAULT),
             'current_view' => new external_value(PARAM_BOOL, 'standard or alternate display type',VALUE_DEFAULT,0),
             'current' => new external_value(PARAM_INT, 'current element', VALUE_DEFAULT),
@@ -261,13 +261,13 @@ class block_msmycourses2_savestates_external extends external_api {
             return null;
         }
 
-        if (!$block = block_instance('msmycourses2', $instance)) {
+        if (!$block = block_instance('mycourse', $instance)) {
             return null;
         }
 
         if(!empty($block->config->database)) {
 
-            $savestate = new block_msmycourses2\savestates($blockid,$current_view);
+            $savestate = new block_mycourse\savestates($blockid,$current_view);
 
             if(!empty($current)) {
                 $savestate->add_savestate('slider',$category, $current);

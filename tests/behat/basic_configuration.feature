@@ -1,4 +1,4 @@
-@javascript @msag_plugin @overlook @block_msmycourses2 @block_msmycourses2__basic_configuration
+@javascript @msag_plugin @overlook @block_mycourse @block_mycourse__basic_configuration
 Feature: Checking the metadata fields filter of courses
   As administrator
   Background:
@@ -16,7 +16,7 @@ Feature: Checking the metadata fields filter of courses
       And pause
       And I add the "msmycourses" block
 
-  Scenario: I change name the block msmycourses2
+  Scenario: I change name the block mycourse
     Given I log in as "admin"
       And I am on site homepage
       And I turn editing mode on

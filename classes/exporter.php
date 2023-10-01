@@ -1,6 +1,6 @@
 <?php
 
-namespace block_msmycourses2;
+namespace block_mycourse;
 
 use stdClass;
 use context_course;

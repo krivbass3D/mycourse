@@ -78,9 +78,9 @@ export const init = (category,sliderconfig,top_category = 0) => {
       }
       var promises = ajax.call([
           {
-                methodname: 'block_msmycourses2_savestates_slider',
+                methodname: 'block_mycourse_savestates_slider',
                 args: {
-                          blockid: swiper.el.closest('.block_msmycourses2').id.substring(4),
+                          blockid: swiper.el.closest('.block_mycourse').id.substring(4),
                           category: category,
                           current_view: current_view,
                           current: swiper.realIndex

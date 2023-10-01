@@ -4,7 +4,7 @@ import templates from 'core/templates';
 import config from 'core/config';
 import notification from 'core/notification';
 import $ from 'jquery';
-import * as slider from 'block_msmycourses2/course_slider';
+import * as slider from 'block_mycourse/course_slider';
 
 class item_load {
 
@@ -19,7 +19,7 @@ static msmycourses_item_load = (item,id,load_savestate) => {
 
                 var promise = ajax.call([
                 {
-                        methodname: 'block_msmycourses2_load_category',
+                        methodname: 'block_mycourse_load_category',
                                       args: {
                                               blockid: id,
                                               category_id: $(item).data('id'),
@@ -38,11 +38,11 @@ static msmycourses_item_load = (item,id,load_savestate) => {
                                     record.show_favorites = response.show_favorites;
                                     record.remove_activities = response.remove_activities;
                                     record.is_compact_view = response.is_compact_view;
-                                    templates.render('block_msmycourses2/item', record).then(function (html, js) {
+                                    templates.render('block_mycourse/item', record).then(function (html, js) {
                                                     templates.appendNodeContents($(item).children('.children'), html, js);
                                                     count++;
                                                     if(count == response.records.length && load_savestate) {
-                                                            $(".block_msmycourses2 .savestate_open").each(function() {
+                                                            $(".block_mycourse .savestate_open").each(function() {
                                                                 if (!$(this).hasClass('open')) {
                                                                     item_load.savestate_open($(this), id, false, true);
                                                                 }
@@ -53,11 +53,11 @@ static msmycourses_item_load = (item,id,load_savestate) => {
                         }
                         else {
                                 response.config = config;
-                                templates.render('block_msmycourses2/course_slider', response).then(function (html, js) {
+                                templates.render('block_mycourse/course_slider', response).then(function (html, js) {
                                                       templates.appendNodeContents($(item).children('.children'), html, js);
                                                       slider.init($(item),response.slider_config);
                                                       if(load_savestate) {
-                                                            $(".block_msmycourses2 .savestate_open").each(function() {
+                                                            $(".block_mycourse .savestate_open").each(function() {
                                                                 if (!$(this).hasClass('open')) {
                                                                     item_load.savestate_open($(this), id, false, true);
                                                                 }
@@ -67,7 +67,7 @@ static msmycourses_item_load = (item,id,load_savestate) => {
                         }
 
                             if(response.is_compact_view) {
-                                            templates.render('block_msmycourses2/compact_selector', response)
+                                            templates.render('block_mycourse/compact_selector', response)
                                             .then(function (html, js) {
                                                 templates.replaceNode($(item).find('.compact_selector_wrapper'), html, js);
                                             }).fail(notification.exception);

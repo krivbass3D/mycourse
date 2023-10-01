@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="blocks/msmycourses2/db" VERSION="2021120700"
-       COMMENT="XMLDB file for Moodle blocks/msmycourses2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<XMLDB PATH="blocks/mycourse/db" VERSION="2021120700"
+       COMMENT="XMLDB file for Moodle blocks/mycourse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
 	        <TABLES>
-               <TABLE NAME="block_msmycourses2_savestate" COMMENT="Contains user savestates">
+               <TABLE NAME="block_mycourse_savestate" COMMENT="Contains user savestates">
                         <FIELDS>
                               <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                               <FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>

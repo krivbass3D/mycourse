@@ -2,7 +2,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-class block_msmycourses2_observer {
+class block_mycourse_observer {
 
     public static function user_enrolment_created(\core\event\user_enrolment_created $event): void {
 
@@ -44,19 +44,19 @@ class block_msmycourses2_observer {
 
     public static function course_deleted(\core\event\course_deleted $event): void {
 
-        //   cache_helper::purge_by_definition('block_msmycourses2', 'filtered_courses');
+        //   cache_helper::purge_by_definition('block_mycourse', 'filtered_courses');
           self::clear_block_savestates($event->objectid);
     }
 
     public static function course_updated(\core\event\course_updated $event): void {
 
-        //   cache_helper::purge_by_definition('block_msmycourses2', 'filtered_courses');
+        //   cache_helper::purge_by_definition('block_mycourse', 'filtered_courses');
           self::clear_block_savestates($event->objectid);
     }
 
     // private static function clear_cache($id) {
 
-    //     $cache = cache::make('block_msmycourses2', 'filtered_courses');
+    //     $cache = cache::make('block_mycourse', 'filtered_courses');
     //     $records = self::get_block_instances();
 
     //     foreach ($records as $record) {
@@ -70,7 +70,7 @@ class block_msmycourses2_observer {
 
     private static function clear_user_savestates($userid): void {
 
-        $savestate = new block_msmycourses2\savestates(0,0,$userid);
+        $savestate = new block_mycourse\savestates(0,0,$userid);
         $savestate->cleanup_userdata();
 
     }
@@ -81,12 +81,12 @@ class block_msmycourses2_observer {
 
         foreach($records as $record) {
 
-            $block = block_instance('msmycourses2', $record);
+            $block = block_instance('mycourse', $record);
             $category = core_course_category::get($block->config->top_category,MUST_EXIST,true,2);
             $all_courses = $category->get_courses(['recursive' => 1,'idonly' => 1]);
 
             if(in_array($courseid,$all_courses)) {
-                $savestate = new block_msmycourses2\savestates($record->id);
+                $savestate = new block_mycourse\savestates($record->id);
                 $savestate->cleanup_blockdata();
             }
 
@@ -95,7 +95,7 @@ class block_msmycourses2_observer {
                 $all_courses = $category->get_courses(['recursive' => 1,'idonly' => 1]);
 
                 if(in_array($courseid,$all_courses)) {
-                    $savestate = new block_msmycourses2\savestates($record->id,1);
+                    $savestate = new block_mycourse\savestates($record->id,1);
                     $savestate->cleanup_blockdata();
                 }
             }
@@ -110,7 +110,7 @@ class block_msmycourses2_observer {
 
         global $DB;
 
-        return $DB->get_records('block_instances',['blockname' => 'msmycourses2'],'id');
+        return $DB->get_records('block_instances',['blockname' => 'mycourse'],'id');
 
     }
 

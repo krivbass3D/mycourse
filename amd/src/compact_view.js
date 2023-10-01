@@ -4,7 +4,7 @@ import templates from 'core/templates';
 import config from 'core/config';
 import notification from 'core/notification';
 import $ from 'jquery';
-import * as slider from 'block_msmycourses2/course_slider';
+import * as slider from 'block_mycourse/course_slider';
 
 export const init = (id) => {
 
@@ -29,7 +29,7 @@ const show_compact_view = (element,id,compact) =>  {
                 }
                         var promises = ajax.call([
                                 {
-                                        methodname: 'block_msmycourses2_load_category',
+                                        methodname: 'block_mycourse_load_category',
                                         args: {
                                                 blockid: id,
                                                 use_compact_view: compact,
@@ -48,7 +48,7 @@ const show_compact_view = (element,id,compact) =>  {
                                     children.classList.add('children');
                                     category.append(children);
                                     if(response.slider) {
-                                          templates.render('block_msmycourses2/course_slider', response).then(function (html, js) {
+                                          templates.render('block_mycourse/course_slider', response).then(function (html, js) {
                                                       templates.appendNodeContents(category.children('.children'), html, js);
                                                       slider.init(category,response.slider_config);
                                           });
@@ -59,13 +59,13 @@ const show_compact_view = (element,id,compact) =>  {
                                                   record.show_favorites = response.show_favorites;
                                                   record.remove_activities = response.remove_activities;
                                                   record.is_compact_view = response.is_compact_view;
-                                                  templates.render('block_msmycourses2/item', record).then(function (html, js) {
+                                                  templates.render('block_mycourse/item', record).then(function (html, js) {
                                                       templates.appendNodeContents(category.children('.children'), html, js);
                                                   }).fail(notification.exception);
                                           });
                                     }
 
-                                    templates.render('block_msmycourses2/compact_selector', response)
+                                    templates.render('block_mycourse/compact_selector', response)
                                             .then(function (html, js) {
                                                 templates.replaceNode(category.find('.compact_selector_wrapper'), html, js);
                                             }).fail(notification.exception);
@@ -73,7 +73,7 @@ const show_compact_view = (element,id,compact) =>  {
 
                       var savestate = ajax.call([
                                       {
-                                            methodname: 'block_msmycourses2_savestates_compact',
+                                            methodname: 'block_mycourse_savestates_compact',
                                             args: {
                                                       blockid: id,
                                                       category: category.data('id'),

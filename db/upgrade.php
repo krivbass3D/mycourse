@@ -1,6 +1,6 @@
 <?php
 
-function xmldb_block_msmycourses2_upgrade($oldversion = 0): bool {
+function xmldb_block_mycourse_upgrade($oldversion = 0): bool {
 
     global $CFG, $DB;
 
@@ -8,7 +8,7 @@ function xmldb_block_msmycourses2_upgrade($oldversion = 0): bool {
 
     if ($oldversion < 2021120702) {
 
-        $table = new xmldb_table('block_msmycourses2_savestate');
+        $table = new xmldb_table('block_mycourse_savestate');
 
         if(!$dbman->table_exists($table)) {
             $table->add_field('id', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, XMLDB_SEQUENCE, null, null, null);
@@ -23,7 +23,7 @@ function xmldb_block_msmycourses2_upgrade($oldversion = 0): bool {
             $dbman->create_table($table);
         }
 
-        upgrade_plugin_savepoint(true, 2021120702, 'block', 'msmycourses2');
+        upgrade_plugin_savepoint(true, 2021120702, 'block', 'mycourse');
     }
 
     return true;

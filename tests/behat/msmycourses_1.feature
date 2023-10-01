@@ -1,6 +1,6 @@
 @javascript @msag_plugin @overlook @msmycourses_1
 
-Feature: Testing the msmycourses2 block. Testing "Basic configuration"
+Feature: Testing the mycourse block. Testing "Basic configuration"
 
 #    And the following "activities" exist:
 #      | activity | course | idnumber | name            | intro                  | completion | completionview |

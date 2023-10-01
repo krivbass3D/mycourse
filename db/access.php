@@ -5,7 +5,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $capabilities = [
 
-    'block/msmycourses2:myaddinstance' => [
+    'block/mycourse:myaddinstance' => [
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => [
@@ -15,7 +15,7 @@ $capabilities = [
         'clonepermissionsfrom' => 'moodle/my:manageblocks'
     ],
 
-    'block/msmycourses2:addinstance' => [
+    'block/mycourse:addinstance' => [
         'riskbitmask' => RISK_SPAM | RISK_XSS,
 
         'captype' => 'write',

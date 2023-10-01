@@ -1,18 +1,18 @@
 <div class="msmycourses_wrapper">
-          {{#show_alt_view}}{{> block_msmycourses2/switch_view }}{{/show_alt_view}}
+          {{#show_alt_view}}{{> block_mycourse/switch_view }}{{/show_alt_view}}
   {{#header}}
-        {{> block_msmycourses2/header_category }}
+        {{> block_mycourse/header_category }}
   {{/header}}
 <div class="items {{display_type}} {{num_tiles}}">
   {{#slider}}
-          {{> block_msmycourses2/course_slider }}                
+          {{> block_mycourse/course_slider }}
   {{/slider}}
   {{^slider}}
 
             {{#records}}
-                    {{> block_msmycourses2/item }}
+                    {{> block_mycourse/item }}
             {{/records}}
   {{/slider}}
 </div>
-  {{#next}}{{> block_msmycourses2/more }}{{/next}}
+  {{#next}}{{> block_mycourse/more }}{{/next}}
 </div>

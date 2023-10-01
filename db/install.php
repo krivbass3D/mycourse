@@ -3,7 +3,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 
-function xmldb_block_msmycourses2_install(): void {
+function xmldb_block_mycourse_install(): void {
 
     global $DB;
 
@@ -13,7 +13,7 @@ function xmldb_block_msmycourses2_install(): void {
         foreach ($instances as $instance) {
 
             $old_id = $instance->id;
-            $instance->blockname = 'msmycourses2';
+            $instance->blockname = 'mycourse';
             $instance->id = null;
             $instance->timecreated = time();
             $instance->timemodified = time();

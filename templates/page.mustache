@@ -1,17 +1,17 @@
 <div class="msmycourses_wrapper">
-          {{#show_alt_view}}{{> block_msmycourses2/switch_view }}{{/show_alt_view}}
-            {{#header}}{{> block_msmycourses2/header_category }}{{/header}}
+          {{#show_alt_view}}{{> block_mycourse/switch_view }}{{/show_alt_view}}
+            {{#header}}{{> block_mycourse/header_category }}{{/header}}
   <div class="page list">
         {{#prev}}<div class="prev" data-current={{current}} data-currentview={{current_view}} data-prev=1>{{#pix}}t/left,core{{/pix}}</div>{{/prev}}
         {{^prev}}<div class="prev"></div>{{/prev}}
         <div class="items {{display_type}} page_list {{num_tiles}}"> 
   {{#slider}}
-          {{> block_msmycourses2/course_slider }}                
+          {{> block_mycourse/course_slider }}
   {{/slider}}
   {{^slider}}
 
             {{#records}}
-                    {{> block_msmycourses2/item }}
+                    {{> block_mycourse/item }}
             {{/records}}
   {{/slider}}
         </div>

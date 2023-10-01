@@ -1,6 +1,6 @@
 <?php
 
-namespace block_msmycourses2;
+namespace block_mycourse;
 
 use core_course_category;
 use cache;
@@ -445,7 +445,7 @@ class builder {
 
         global $USER;
 
-        //  $cache = cache::make('block_msmycourses2', 'filtered_courses');
+        //  $cache = cache::make('block_mycourse', 'filtered_courses');
 
         //  $filtered_courses = $cache->get('filtered_courses_'.$USER->id.'_'.$this->block);
         //var_Dump($filtered_courses);die();
@@ -647,7 +647,7 @@ class builder {
 
     //      global $USER;
 
-    //      $cache = cache::make('block_msmycourses2', 'filtered_courses');
+    //      $cache = cache::make('block_mycourse', 'filtered_courses');
 
     //      $filtered_courses = $cache->get('filtered_courses_'.$USER->id.'_'.$this->block);
     //      if(!empty($filtered_courses)) {

@@ -4,8 +4,8 @@ import templates from 'core/templates';
 import config from 'core/config';
 import notification from 'core/notification';
 import $ from 'jquery';
-import item_load from 'block_msmycourses2/item_load';
-import * as slider from 'block_msmycourses2/course_slider';
+import item_load from 'block_mycourse/item_load';
+import * as slider from 'block_mycourse/course_slider';
 
 export const init = (id) => {
 
@@ -22,7 +22,7 @@ const msmycourses_switch_view = (element,id) =>  {
                         if(element.data('target') == 'menu') {
                                 var promises = ajax.call([
                                 {
-                                        methodname: 'block_msmycourses2_load_menu_category',
+                                        methodname: 'block_mycourse_load_menu_category',
                                         args: {
                                                 blockid: id,
                                                 current_view: element.data('currentview'),
@@ -35,7 +35,7 @@ const msmycourses_switch_view = (element,id) =>  {
 
                                 var promises = ajax.call([
                                 {
-                                        methodname: 'block_msmycourses2_show_more',
+                                        methodname: 'block_mycourse_show_more',
                                         args: {
                                                 blockid: id,
                                                 offset: 0,
@@ -53,22 +53,22 @@ const msmycourses_switch_view = (element,id) =>  {
                                     var template_type;
 
                                     if(element.data('target') == 'list') {
-                                        template_type = "block_msmycourses2/list";
+                                        template_type = "block_mycourse/list";
                                     }
                                     if(element.data('target') == 'page') {
-                                        template_type = "block_msmycourses2/page";
+                                        template_type = "block_mycourse/page";
                                     }
                                     if(element.data('target') == 'menu') {
-                                        template_type = "block_msmycourses2/menu";
+                                        template_type = "block_mycourse/menu";
                                     }
                                     if(response.slider) {
                                         if(response.records.length == 0 && response.children.length == 0) {
-                                            template_type = "block_msmycourses2/empty";
+                                            template_type = "block_mycourse/empty";
                                         }
                                     }
                                     else {
                                         if(response.records.length == 0) {
-                                            template_type = "block_msmycourses2/empty";
+                                            template_type = "block_mycourse/empty";
                                         }
                                     }
                                     response.config = config;
@@ -80,7 +80,7 @@ const msmycourses_switch_view = (element,id) =>  {
                                                 if($(swiper_element).hasClass('swiper')) {
                                                     slider.init($(swiper_element).parent(),response.slider_config);
                                                 }
-                                                $(".block_msmycourses2 .savestate_open").each(function() {
+                                                $(".block_mycourse .savestate_open").each(function() {
                                                     if (!$(this).hasClass('open')) {
                                                           item_load.savestate_open($(this), id, true);
                                                     }
@@ -88,7 +88,7 @@ const msmycourses_switch_view = (element,id) =>  {
                                             }).fail(notification.exception);
 
                                     if(response.next) {
-                                        templates.render('block_msmycourses2/more', response).then(function (html, js) {
+                                        templates.render('block_mycourse/more', response).then(function (html, js) {
                                                 templates.replaceNode('#inst'+id+' .show_more', html, js);
                                             }).fail(notification.exception);
                                     }
@@ -106,7 +106,7 @@ const msmycourses_alt_view_savestate = (id) => {
 
           var promises = ajax.call([
           {
-                methodname: 'block_msmycourses2_savestates_alt_view',
+                methodname: 'block_mycourse_savestates_alt_view',
                 args: {
                           blockid: id
                 }

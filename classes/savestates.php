@@ -1,6 +1,6 @@
 <?php
 
-namespace block_msmycourses2;
+namespace block_mycourse;
 
 use stdClass;
 
@@ -54,7 +54,7 @@ class savestates {
             $this->modify_savestate($object);
         }
         else {
-            $DB->insert_record('block_msmycourses2_savestate',$object);
+            $DB->insert_record('block_mycourse_savestate',$object);
         }
     }
 
@@ -72,7 +72,7 @@ class savestates {
             return null;
         }
 
-        $DB->delete_records('block_msmycourses2_savestate', ['id' => $id]);
+        $DB->delete_records('block_mycourse_savestate', ['id' => $id]);
     }
 
     public function get_savestates($type = 0): ?object {
@@ -80,13 +80,13 @@ class savestates {
         global $DB;
 
         if(empty($type)) {
-            return $DB->get_records('block_msmycourses2_savestate', ['block' => $this->block, 'user' => $this->user, 'alt_view' => $this->alt_view]);
+            return $DB->get_records('block_mycourse_savestate', ['block' => $this->block, 'user' => $this->user, 'alt_view' => $this->alt_view]);
         }
         else {
             if(empty($this->check_type($type))) {
                 return null;
             }
-            return $DB->get_records('block_msmycourses2_savestate', ['block' => $this->block, 'user' => $this->user, 'alt_view' => $this->alt_view, 'type' => $type]);
+            return $DB->get_records('block_mycourse_savestate', ['block' => $this->block, 'user' => $this->user, 'alt_view' => $this->alt_view, 'type' => $type]);
         }
     }
 
@@ -97,21 +97,21 @@ class savestates {
         if(empty($this->check_type($type))) {
                return null;
         }
-        return $DB->get_record('block_msmycourses2_savestate', ['block' => $this->block, 'user' => $this->user, 'alt_view' => $this->alt_view, 'type' => $type, 'category' => $category]);
+        return $DB->get_record('block_mycourse_savestate', ['block' => $this->block, 'user' => $this->user, 'alt_view' => $this->alt_view, 'type' => $type, 'category' => $category]);
     }
 
     public function get_alt_view_savestate(): object {
 
         global $DB;
 
-        return $DB->get_records('block_msmycourses2_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => 'alt_view']);
+        return $DB->get_records('block_mycourse_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => 'alt_view']);
     }
 
     private function modify_savestate($object): void {
 
         global $DB;
 
-        $DB->update_record('block_msmycourses2_savestate', $object);
+        $DB->update_record('block_mycourse_savestate', $object);
 
     }
 
@@ -120,13 +120,13 @@ class savestates {
         global $DB;
 
         if($type == 'alt_view') {
-            $record = $DB->get_record('block_msmycourses2_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => $type]);
+            $record = $DB->get_record('block_mycourse_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => $type]);
         }
         else if ($type == 'menu') {
-            $record = $DB->get_record('block_msmycourses2_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => $type, 'alt_view' => $this->alt_view]);
+            $record = $DB->get_record('block_mycourse_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => $type, 'alt_view' => $this->alt_view]);
         }
         else {
-            $record = $DB->get_record('block_msmycourses2_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => $type, 'alt_view' => $this->alt_view, 'category' => $category]);
+            $record = $DB->get_record('block_mycourse_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => $type, 'alt_view' => $this->alt_view, 'category' => $category]);
         }
 
         return $record->id;
@@ -136,21 +136,21 @@ class savestates {
 
         global $DB;
 
-        return $DB->get_record('block_msmycourses2_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => 'alt_view']) ?: null;
+        return $DB->get_record('block_mycourse_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => 'alt_view']) ?: null;
     }
 
     public function get_menu_savestate(): ?object {
 
         global $DB;
 
-        return $DB->get_record('block_msmycourses2_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => 'menu', 'alt_view' => $this->alt_view]) ?: null;
+        return $DB->get_record('block_mycourse_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => 'menu', 'alt_view' => $this->alt_view]) ?: null;
     }
 
     public function get_page_savestate(): ?object {
 
         global $DB;
 
-        return $DB->get_record('block_msmycourses2_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => 'page', 'alt_view' => $this->alt_view]) ?: null;
+        return $DB->get_record('block_mycourse_savestate', ['block' => $this->block, 'user' => $this->user, 'type' => 'page', 'alt_view' => $this->alt_view]) ?: null;
     }
 
     public function cleanup_userdata(): void {
@@ -159,7 +159,7 @@ class savestates {
 
         foreach($this->valid_types as $type) {
             if($type !== 'collapse') {
-                  $DB->delete_records('block_msmycourses2_savestate', ['user' => $this->user, 'type' => $type]);
+                  $DB->delete_records('block_mycourse_savestate', ['user' => $this->user, 'type' => $type]);
             }
         }
 
@@ -171,7 +171,7 @@ class savestates {
 
         foreach($this->valid_types as $type) {
             if($type !== 'collapse') {
-                  $DB->delete_records('block_msmycourses2_savestate', ['block' => $this->block, 'alt_view' => $this->alt_view, 'type' => $type]);
+                  $DB->delete_records('block_mycourse_savestate', ['block' => $this->block, 'alt_view' => $this->alt_view, 'type' => $type]);
             }
         }
     }
@@ -182,7 +182,7 @@ class savestates {
 
         foreach($this->valid_types as $type) {
             if($type !== 'collapse') {
-                  $DB->delete_records('block_msmycourses2_savestate', ['type' => $type]);
+                  $DB->delete_records('block_mycourse_savestate', ['type' => $type]);
             }
         }
 

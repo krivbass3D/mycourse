@@ -4,16 +4,16 @@ import ajax from 'core/ajax';
 //import config from 'core/config';
 import notification from 'core/notification';
 import $ from 'jquery';
-import item_load from 'block_msmycourses2/item_load';
+import item_load from 'block_mycourse/item_load';
 
 export const init = (id) => {
 
-    $('section').on("click",'#inst'+id+'.block_msmycourses2 .collapse_item', function (e) {
+    $('section').on("click",'#inst'+id+'.block_mycourse .collapse_item', function (e) {
             item_collapse_click($(this).parent(), id, e);
             return false;
     });
 
-    $('#inst'+id+'.block_msmycourses2 .savestate_open').each(function() {
+    $('#inst'+id+'.block_mycourse .savestate_open').each(function() {
         if (!$(this).hasClass('open')) {
             item_collapse($(this), id, false, true);
         }
@@ -34,7 +34,7 @@ const item_collapse = (item, id, resize,load_savestate) => {
                         if(resize) {$(window).trigger("resize");}
                         var savestate = ajax.call([
                                       {
-                                            methodname: 'block_msmycourses2_savestates_collapse',
+                                            methodname: 'block_mycourse_savestates_collapse',
                                             args: {
                                                       blockid: id,
                                                       category: $(item).data('id'),
@@ -54,7 +54,7 @@ const item_collapse = (item, id, resize,load_savestate) => {
                         }
                         var savestate = ajax.call([
                                       {
-                                            methodname: 'block_msmycourses2_savestates_collapse',
+                                            methodname: 'block_mycourse_savestates_collapse',
                                             args: {
                                                       blockid: id,
                                                       category: $(item).data('id'),

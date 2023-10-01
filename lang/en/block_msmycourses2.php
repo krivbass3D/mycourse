@@ -19,8 +19,8 @@ $string['title_subscribed'] = 'Subscribed Courses';
 $string['title_not_subscribed'] = 'Not Subscribed Courses';
 $string['no_category'] = 'No category';
 
-$string['msmycourses2:addinstance']   = 'Add a new msmycourses block';
-$string['msmycourses2:myaddinstance'] = 'Add a new msmycourses block to the My Moodle page';
+$string['mycourse:addinstance']   = 'Add a new msmycourses block';
+$string['mycourse:myaddinstance'] = 'Add a new msmycourses block to the My Moodle page';
 
 $string['no_courses'] = 'There are no courses';
 
