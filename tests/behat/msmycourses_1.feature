@@ -21,6 +21,8 @@ Feature: Testing the msmycourses2 block. Testing "Basic configuration"
       | name        | category    | idnumber |
       | Category A  | 0           | 1cat     |
       | Category B  | 0           | 2cat     |
+#    asdfasfdsdfsdfsdfsdfds mo
+    And pause
     And the following "courses" exist:
       | fullname  | shortname | category    | summary        |
       | course1   | c1        | 1cat        | Test course 1  |
