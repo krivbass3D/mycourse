@@ -1,4 +1,4 @@
-@javascript @msag_plugin @overlook @msmycourses_1
+@javascript @msag_plugin @overlook @mycourse_1
 
 Feature: Testing the mycourse block. Testing "Basic configuration"
 
