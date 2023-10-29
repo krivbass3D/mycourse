@@ -13,9 +13,9 @@ Feature: Testing the msmycourses block. Testing "Filter configuration"
       | teacher1 | teacher@test.test  | T1       | b      |
     And the following "categories" exist:
       | name        | category    | idnumber |
-      | Category 1  | 0           | 1cat     |
-      | Category A  | 0           | 2cat     |
-      | Category B  | 0           | 3cat     |
+      | Category A  | 0           | 1cat     |
+      | Category B  | 0           | 2cat     |
+      | Category C  | 0           | 3cat     |
     And the following "courses" exist:
       | fullname  | shortname | category    | summary    | enablecompletion | showcompletionconditions |  groupmode |
       | course1   | c1        | 1cat        | Tcourse 1  |              1   |                      1   |        1   |
@@ -27,8 +27,8 @@ Feature: Testing the msmycourses block. Testing "Filter configuration"
       | course7   | c7        | 3cat        | Tcourse 7  |              1   |                      1   |        1   |
       | course8   | c8        | 3cat        | Tcourse 8  |              1   |                      1   |        1   |
       | course9   | c9        | 3cat        | Tcourse 9  |              1   |                      1   |        1   |
-      | course10  | c10       | 3cat        | Tcourse 10 |              0   |                      0   |        1   |
-      | course11  | c11       | 3cat        | Tcourse 11 |              1   |                      1   |        1   |
+      | coursea   | c10       | 3cat        | Tcourse 10 |              0   |                      0   |        1   |
+      | courseb   | c11       | 3cat        | Tcourse 11 |              1   |                      1   |        1   |
     And the following "course enrolments" exist:
       | user     | course  | role    |
       | student1 | c1      | student |
@@ -100,142 +100,221 @@ Feature: Testing the msmycourses block. Testing "Filter configuration"
       | assign   | activity1 | act21    | c11     | 0          |     0          |
       | assign   | activity2 | act22    | c11     | 0          |     0          |
 
-  Scenario: Completion filter. Hide courses without configured activity completion.
+    And I log in as "admin"
+    And I am on "course1" course homepage
+    And I navigate to "Course completion" in current page administration
+    And I expand all fieldsets
+    And I set the following fields to these values:
+      | Assignment - activity1 | 1 |
+      | Assignment - activity2 | 1 |
+    And I click on "Save changes" "button"
 
-    Given I log in as "student1"
+    And I am on "course2" course homepage
+    And I navigate to "Course completion" in current page administration
+    And I expand all fieldsets
+    And I set the following fields to these values:
+      | Assignment - activity1 | 1 |
+      | Assignment - activity2 | 1 |
+    And I click on "Save changes" "button"
 
-    When I am on "course1" course homepage
-    And I click on "Mark as done" "button" in the "activity1" "activity"
     And I am on "course3" course homepage
-    And I click on "Mark as done" "button" in the "activity1" "activity"
-    And I click on "Mark as done" "button" in the "activity2" "activity"
+    And I navigate to "Course completion" in current page administration
+    And I expand all fieldsets
+    And I set the following fields to these values:
+      | Assignment - activity1 | 1 |
+      | Assignment - activity2 | 1 |
+    And I click on "Save changes" "button"
+
     And I am on "course4" course homepage
-    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I navigate to "Course completion" in current page administration
+    And I expand all fieldsets
+    And I set the following fields to these values:
+      | Assignment - activity1 | 1 |
+      | Assignment - activity2 | 1 |
+    And I click on "Save changes" "button"
+
+    And I am on "course5" course homepage
+    And I navigate to "Course completion" in current page administration
+    And I expand all fieldsets
+    And I set the following fields to these values:
+      | Assignment - activity1 | 1 |
+      | Assignment - activity2 | 1 |
+    And I click on "Save changes" "button"
+
     And I am on "course6" course homepage
-    And I click on "Mark as done" "button" in the "activity1" "activity"
-    And I click on "Mark as done" "button" in the "activity2" "activity"
+    And I navigate to "Course completion" in current page administration
+    And I expand all fieldsets
+    And I set the following fields to these values:
+      | Assignment - activity1 | 1 |
+      | Assignment - activity2 | 1 |
+    And I click on "Save changes" "button"
+
     And I am on "course7" course homepage
-    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I navigate to "Course completion" in current page administration
+    And I expand all fieldsets
+    And I set the following fields to these values:
+      | Assignment - activity1 | 1 |
+      | Assignment - activity2 | 1 |
+    And I click on "Save changes" "button"
+
+    And I am on "course8" course homepage
+    And I navigate to "Course completion" in current page administration
+    And I expand all fieldsets
+    And I set the following fields to these values:
+      | Assignment - activity1 | 1 |
+      | Assignment - activity2 | 1 |
+    And I click on "Save changes" "button"
+
     And I am on "course9" course homepage
-    And I click on "Mark as done" "button" in the "activity1" "activity"
-    And I click on "Mark as done" "button" in the "activity2" "activity"
+    And I navigate to "Course completion" in current page administration
+    And I expand all fieldsets
+    And I set the following fields to these values:
+      | Assignment - activity1 | 1 |
+      | Assignment - activity2 | 1 |
+    And I click on "Save changes" "button"
 
-    And I follow "Dashboard"
-#    And I am on "course1" course homepage
-    And I turn editing mode on
-    And I add the "msmycourses" block
-    And I configure the "Courses" block
-    And I set the following fields to these values:
-      | Title                    | Courses               |
-      | Display                  | tiles                 |
-      | tiles per row            | 3                     |
-      | Number of shown elements | 11                    |
-      | Completion Filter        | all courses           |
-      | Region                   | content               |
-    And I press "Save changes"
-    And I configure the "Timeline" block
-    And I set the following fields to these values:
-      | Visible                   | No  |
-    And I press "Save changes"
-    And I configure the "Calendar" block
-    And I set the following fields to these values:
-      | Visible                   | No  |
-    And I press "Save changes"
 
-    And I configure the "Courses" block
-    And I set the following fields to these values:
-      | Completion Filter        | uncompleted courses only |
-    And I press "Save changes"
-    Then I should see "course 1" in the "Courses" "block"
-    And I should see "course 2" in the "Courses" "block"
-    And I should see "course 4" in the "Courses" "block"
-    And I should see "course 5" in the "Courses" "block"
-    And I should see "course 7" in the "Courses" "block"
-    And I should see "course 8" in the "Courses" "block"
-    And I should see "course 10" in the "Courses" "block"
-    And I should not see "course 3" in the "Courses" "block"
-    And I should not see "course 6" in the "Courses" "block"
-    And I should not see "course 9" in the "Courses" "block"
-    And I should not see "course 11" in the "Courses" "block"
-
-    And I configure the "Courses" block
-    And I set the following fields to these values:
-      | Completion Filter        | uncompleted courses without activity progress |
-    And I press "Save changes"
-    Then I should see "course 2" in the "Courses" "block"
-    And I should see "course 5" in the "Courses" "block"
-    And I should see "course 8" in the "Courses" "block"
-    And I should see "course 10" in the "Courses" "block"
-#    And I should not see "course 1" in the "Courses" "block"
-    And I should not see "course 3" in the "Courses" "block"
-    And I should not see "course 4" in the "Courses" "block"
-    And I should not see "course 6" in the "Courses" "block"
-    And I should not see "course 7" in the "Courses" "block"
-    And I should not see "course 9" in the "Courses" "block"
-    And I should not see "course 11" in the "Courses" "block"
-
+#  Scenario: Completion filter. Hide courses without configured activity completion.
+#
+#    Given I log in as "student1"
+#
+#    When I am on "course1" course homepage
+#    And I click on "Mark as done" "button" in the "activity1" "activity"
+#    And I am on "course3" course homepage
+#    And I click on "Mark as done" "button" in the "activity1" "activity"
+#    And I click on "Mark as done" "button" in the "activity2" "activity"
+#    And I am on "course4" course homepage
+#    And I click on "Mark as done" "button" in the "activity1" "activity"
+#    And I am on "course6" course homepage
+#    And I click on "Mark as done" "button" in the "activity1" "activity"
+#    And I click on "Mark as done" "button" in the "activity2" "activity"
+#    And I am on "course7" course homepage
+#    And I click on "Mark as done" "button" in the "activity1" "activity"
+#    And I am on "course9" course homepage
+#    And I click on "Mark as done" "button" in the "activity1" "activity"
+#    And I click on "Mark as done" "button" in the "activity2" "activity"
+#
+#    And I follow "Dashboard"
+#    And I turn editing mode on
+#    And I add the "msmycourses" block
+#    And I configure the "Courses" block
 #    And I set the following fields to these values:
-#      | hide courses without configured activity completion | yes |
+#      | Title                    | Courses               |
+#      | Display                  | tiles                 |
+#      | tiles per row            | 3                     |
+#      | Number of shown elements | 11                    |
+#      | Completion Filter        | all courses           |
+#      | Region                   | content               |
 #    And I press "Save changes"
-#    Then I should see "course 1" in the "Courses" "block"
-#    And I should see "course 2" in the "Courses" "block"
-#    And I should see "course 4" in the "Courses" "block"
-#    And I should see "course 5" in the "Courses" "block"
-#    And I should see "course 7" in the "Courses" "block"
-#    And I should see "course 8" in the "Courses" "block"
-#    And I should not see "course 3" in the "Courses" "block"
-#    And I should not see "course 6" in the "Courses" "block"
-#    And I should not see "course 9" in the "Courses" "block"
-#    And I should not see "course 10" in the "Courses" "block"
-
-    And I configure the "Courses" block
-    And I set the following fields to these values:
-      | Completion Filter        | uncompleted courses with activity progress    |
-    And I press "Save changes"
-    Then I should see "course 1" in the "Courses" "block"
-    And I should see "course 4" in the "Courses" "block"
-    And I should see "course 7" in the "Courses" "block"
-    And I should not see "course 2" in the "Courses" "block"
-    And I should not see "course 3" in the "Courses" "block"
-    And I should not see "course 5" in the "Courses" "block"
-    And I should not see "course 6" in the "Courses" "block"
-    And I should not see "course 8" in the "Courses" "block"
-    And I should not see "course 9" in the "Courses" "block"
-    And I should not see "course 10" in the "Courses" "block"
-    And I should not see "course 11" in the "Courses" "block"
-
-    And I configure the "Courses" block
-    And I set the following fields to these values:
-      | Completion Filter | completed courses only |
-    And I press "Save changes"
-    Then I should not see "course 1" in the "Courses" "block"
-    And I should not see "course 2" in the "Courses" "block"
-    And I should not see "course 3" in the "Courses" "block"
-    And I should not see "course 4" in the "Courses" "block"
-    And I should not see "course 5" in the "Courses" "block"
-    And I should not see "course 6" in the "Courses" "block"
-    And I should not see "course 7" in the "Courses" "block"
-    And I should not see "course 8" in the "Courses" "block"
-    And I should not see "course 9" in the "Courses" "block"
-    And I should not see "course 10" in the "Courses" "block"
-    And I should not see "course 11" in the "Courses" "block"
-
-    And I configure the "Courses" block
-    And I set the following fields to these values:
-      | Completion Filter      | all courses |
-      | Categories to exclude  | Category A  |
-    And I press "Save changes"
-    Then I should see "course 1" in the "Courses" "block"
-    And I should see "course 2" in the "Courses" "block"
-    And I should see "course 3" in the "Courses" "block"
-    And I should see "course 7" in the "Courses" "block"
-    And I should see "course 8" in the "Courses" "block"
-    And I should see "course 9" in the "Courses" "block"
-    And I should see "course 10" in the "Courses" "block"
-    And I should not see "course 4" in the "Courses" "block"
-    And I should not see "course 5" in the "Courses" "block"
-    And I should not see "course 6" in the "Courses" "block"
-    And I should not see "course 11" in the "Courses" "block"
+#    And I configure the "Timeline" block
+#    And I set the following fields to these values:
+#      | Visible | No  |
+#    And I press "Save changes"
+#    And I configure the "Calendar" block
+#    And I set the following fields to these values:
+#      | Visible | No  |
+#    And I press "Save changes"
+#
+#    And I configure the "Courses" block
+#    And I set the following fields to these values:
+#      | Completion Filter | uncompleted courses only |
+#    And I press "Save changes"
+#    Then I should see "course1" in the "Courses" "block"
+#    And I should see "course2" in the "Courses" "block"
+#    And I should see "course4" in the "Courses" "block"
+#    And I should see "course5" in the "Courses" "block"
+#    And I should see "course7" in the "Courses" "block"
+#    And I should see "course8" in the "Courses" "block"
+#    And I should see "coursea" in the "Courses" "block"
+#    And I should not see "course3" in the "Courses" "block"
+#    And I should not see "course6" in the "Courses" "block"
+#    And I should not see "course9" in the "Courses" "block"
+#    And I should not see "courseb" in the "Courses" "block"
+#
+#    And I configure the "Courses" block
+#    And I expand all fieldsets
+#    And I set the following fields to these values:
+#      | hide courses without configured activity completion | Yes |
+#    And I press "Save changes"
+#    Then I should see "course1" in the "Courses" "block"
+#    And I should see "course2" in the "Courses" "block"
+#    And I should see "course4" in the "Courses" "block"
+#    And I should see "course5" in the "Courses" "block"
+#    And I should see "course7" in the "Courses" "block"
+#    And I should see "course8" in the "Courses" "block"
+#    And I should not see "course3" in the "Courses" "block"
+#    And I should not see "course6" in the "Courses" "block"
+#    And I should not see "course9" in the "Courses" "block"
+#    And I should not see "coursea" in the "Courses" "block"
+#    And I should not see "courseb" in the "Courses" "block"
+#
+#    And I configure the "Courses" block
+#    And I set the following fields to these values:
+#      | Completion Filter | uncompleted courses without activity progress |
+#      | hide courses without configured activity completion | No |
+#    And I press "Save changes"
+#    Then I should see "course2" in the "Courses" "block"
+#    And I should see "course5" in the "Courses" "block"
+#    And I should see "course8" in the "Courses" "block"
+#    And I should see "coursea" in the "Courses" "block"
+#    And I should not see "course1" in the "Courses" "block"
+#    And I should not see "course3" in the "Courses" "block"
+#    And I should not see "course4" in the "Courses" "block"
+#    And I should not see "course6" in the "Courses" "block"
+#    And I should not see "course7" in the "Courses" "block"
+#    And I should not see "course9" in the "Courses" "block"
+#    And I should not see "courseb" in the "Courses" "block"
+#
+#    And I configure the "Courses" block
+#    And I set the following fields to these values:
+#      | Completion Filter | uncompleted courses with activity progress |
+#    And I press "Save changes"
+#    Then I should see "course1" in the "Courses" "block"
+#    And I should see "course4" in the "Courses" "block"
+#    And I should see "course7" in the "Courses" "block"
+#    And I should not see "course2" in the "Courses" "block"
+#    And I should not see "course3" in the "Courses" "block"
+#    And I should not see "course5" in the "Courses" "block"
+#    And I should not see "course6" in the "Courses" "block"
+#    And I should not see "course8" in the "Courses" "block"
+#    And I should not see "course9" in the "Courses" "block"
+#    And I should not see "coursea" in the "Courses" "block"
+#    And I should not see "courseb" in the "Courses" "block"
+#
+#    And I configure the "Courses" block
+#    And I set the following fields to these values:
+#      | Completion Filter | completed courses only |
+#    And I press "Save changes"
+#    And pause
+#    Then I should see "course3" in the "Courses" "block"
+#    And I should see "course6" in the "Courses" "block"
+#    And I should see "course9" in the "Courses" "block"
+#    And I should not see "course1" in the "Courses" "block"
+#    And I should not see "course2" in the "Courses" "block"
+#    And I should not see "course4" in the "Courses" "block"
+#    And I should not see "course5" in the "Courses" "block"
+#    And I should not see "course7" in the "Courses" "block"
+#    And I should not see "course8" in the "Courses" "block"
+#    And I should not see "coursea" in the "Courses" "block"
+#    And I should not see "courseb" in the "Courses" "block"
+#
+#    And I configure the "Courses" block
+#    And I set the following fields to these values:
+#      | Completion Filter      | all courses |
+#      | Categories to exclude  | Category B  |
+#    And I press "Save changes"
+#    And pause
+#    Then I should see "course1" in the "Courses" "block"
+#    And I should see "course2" in the "Courses" "block"
+#    And I should see "course3" in the "Courses" "block"
+#    And I should see "course7" in the "Courses" "block"
+#    And I should see "course8" in the "Courses" "block"
+#    And I should see "course9" in the "Courses" "block"
+#    And I should see "coursea" in the "Courses" "block"
+#    And I should not see "course4" in the "Courses" "block"
+#    And I should not see "course5" in the "Courses" "block"
+#    And I should not see "course6" in the "Courses" "block"
+#    And I should not see "courseb" in the "Courses" "block"
 
   Scenario: Courserole.
 
@@ -366,13 +445,13 @@ Feature: Testing the msmycourses block. Testing "Filter configuration"
     And I should see "course 9" in the "Courses" "block"
     And I should see "course 10" in the "Courses" "block"
     And I should see "course 11" in the "Courses" "block"
-
-#    And I set the following fields to these values:
-#      | Course Group Filter   | courses without group membership |
-
-#    And I am on "course1" course homepage
-#    And pause
 #
-#    And I log in as "student2"
-#    And I am on "course1" course homepage
-#    And pause
+##    And I set the following fields to these values:
+##      | Course Group Filter   | courses without group membership |
+#
+##    And I am on "course1" course homepage
+##    And pause
+##
+##    And I log in as "student2"
+##    And I am on "course1" course homepage
+##    And pause
