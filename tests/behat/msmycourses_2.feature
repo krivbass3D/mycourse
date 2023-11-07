@@ -7,10 +7,10 @@ Feature: Testing the msmycourses block. Testing "Filter configuration"
 
   Background:
     Given the following "users" exist:
-      | username | email              | idnumber | groups |
-      | student1 | student1@test.test | S1       | a      |
-      | student2 | student2@test.test | S1       | a      |
-      | teacher1 | teacher@test.test  | T1       | b      |
+      | username | firstname | email             | idnumber | groups |
+      | student1 | student1  | student1@test.test | S1       | a      |
+      | student2 | student2  | student2@test.test | S1       | a      |
+      | teacher1 | teacher1  | teacher1@test.test | T1       | b      |
     And the following "categories" exist:
       | name        | category    | idnumber |
       | Category A  | 0           | 1cat     |
@@ -174,147 +174,145 @@ Feature: Testing the msmycourses block. Testing "Filter configuration"
     And I click on "Save changes" "button"
 
 
-#  Scenario: Completion filter. Hide courses without configured activity completion.
-#
-#    Given I log in as "student1"
-#
-#    When I am on "course1" course homepage
-#    And I click on "Mark as done" "button" in the "activity1" "activity"
-#    And I am on "course3" course homepage
-#    And I click on "Mark as done" "button" in the "activity1" "activity"
-#    And I click on "Mark as done" "button" in the "activity2" "activity"
-#    And I am on "course4" course homepage
-#    And I click on "Mark as done" "button" in the "activity1" "activity"
-#    And I am on "course6" course homepage
-#    And I click on "Mark as done" "button" in the "activity1" "activity"
-#    And I click on "Mark as done" "button" in the "activity2" "activity"
-#    And I am on "course7" course homepage
-#    And I click on "Mark as done" "button" in the "activity1" "activity"
-#    And I am on "course9" course homepage
-#    And I click on "Mark as done" "button" in the "activity1" "activity"
-#    And I click on "Mark as done" "button" in the "activity2" "activity"
-#
-#    And I follow "Dashboard"
-#    And I turn editing mode on
-#    And I add the "msmycourses" block
-#    And I configure the "Courses" block
-#    And I set the following fields to these values:
-#      | Title                    | Courses               |
-#      | Display                  | tiles                 |
-#      | tiles per row            | 3                     |
-#      | Number of shown elements | 11                    |
-#      | Completion Filter        | all courses           |
-#      | Region                   | content               |
-#    And I press "Save changes"
-#    And I configure the "Timeline" block
-#    And I set the following fields to these values:
-#      | Visible | No  |
-#    And I press "Save changes"
-#    And I configure the "Calendar" block
-#    And I set the following fields to these values:
-#      | Visible | No  |
-#    And I press "Save changes"
-#
-#    And I configure the "Courses" block
-#    And I set the following fields to these values:
-#      | Completion Filter | uncompleted courses only |
-#    And I press "Save changes"
-#    Then I should see "course1" in the "Courses" "block"
-#    And I should see "course2" in the "Courses" "block"
-#    And I should see "course4" in the "Courses" "block"
-#    And I should see "course5" in the "Courses" "block"
-#    And I should see "course7" in the "Courses" "block"
-#    And I should see "course8" in the "Courses" "block"
-#    And I should see "coursea" in the "Courses" "block"
-#    And I should not see "course3" in the "Courses" "block"
-#    And I should not see "course6" in the "Courses" "block"
-#    And I should not see "course9" in the "Courses" "block"
-#    And I should not see "courseb" in the "Courses" "block"
-#
-#    And I configure the "Courses" block
-#    And I expand all fieldsets
-#    And I set the following fields to these values:
-#      | hide courses without configured activity completion | Yes |
-#    And I press "Save changes"
-#    Then I should see "course1" in the "Courses" "block"
-#    And I should see "course2" in the "Courses" "block"
-#    And I should see "course4" in the "Courses" "block"
-#    And I should see "course5" in the "Courses" "block"
-#    And I should see "course7" in the "Courses" "block"
-#    And I should see "course8" in the "Courses" "block"
-#    And I should not see "course3" in the "Courses" "block"
-#    And I should not see "course6" in the "Courses" "block"
-#    And I should not see "course9" in the "Courses" "block"
-#    And I should not see "coursea" in the "Courses" "block"
-#    And I should not see "courseb" in the "Courses" "block"
-#
-#    And I configure the "Courses" block
-#    And I set the following fields to these values:
-#      | Completion Filter | uncompleted courses without activity progress |
-#      | hide courses without configured activity completion | No |
-#    And I press "Save changes"
-#    Then I should see "course2" in the "Courses" "block"
-#    And I should see "course5" in the "Courses" "block"
-#    And I should see "course8" in the "Courses" "block"
-#    And I should see "coursea" in the "Courses" "block"
-#    And I should not see "course1" in the "Courses" "block"
-#    And I should not see "course3" in the "Courses" "block"
-#    And I should not see "course4" in the "Courses" "block"
-#    And I should not see "course6" in the "Courses" "block"
-#    And I should not see "course7" in the "Courses" "block"
-#    And I should not see "course9" in the "Courses" "block"
-#    And I should not see "courseb" in the "Courses" "block"
-#
-#    And I configure the "Courses" block
-#    And I set the following fields to these values:
-#      | Completion Filter | uncompleted courses with activity progress |
-#    And I press "Save changes"
-#    Then I should see "course1" in the "Courses" "block"
-#    And I should see "course4" in the "Courses" "block"
-#    And I should see "course7" in the "Courses" "block"
-#    And I should not see "course2" in the "Courses" "block"
-#    And I should not see "course3" in the "Courses" "block"
-#    And I should not see "course5" in the "Courses" "block"
-#    And I should not see "course6" in the "Courses" "block"
-#    And I should not see "course8" in the "Courses" "block"
-#    And I should not see "course9" in the "Courses" "block"
-#    And I should not see "coursea" in the "Courses" "block"
-#    And I should not see "courseb" in the "Courses" "block"
-#
-#    And I configure the "Courses" block
-#    And I set the following fields to these values:
-#      | Completion Filter | completed courses only |
-#    And I press "Save changes"
-#    And pause
-#    Then I should see "course3" in the "Courses" "block"
-#    And I should see "course6" in the "Courses" "block"
-#    And I should see "course9" in the "Courses" "block"
-#    And I should not see "course1" in the "Courses" "block"
-#    And I should not see "course2" in the "Courses" "block"
-#    And I should not see "course4" in the "Courses" "block"
-#    And I should not see "course5" in the "Courses" "block"
-#    And I should not see "course7" in the "Courses" "block"
-#    And I should not see "course8" in the "Courses" "block"
-#    And I should not see "coursea" in the "Courses" "block"
-#    And I should not see "courseb" in the "Courses" "block"
-#
-#    And I configure the "Courses" block
-#    And I set the following fields to these values:
-#      | Completion Filter      | all courses |
-#      | Categories to exclude  | Category B  |
-#    And I press "Save changes"
-#    And pause
-#    Then I should see "course1" in the "Courses" "block"
-#    And I should see "course2" in the "Courses" "block"
-#    And I should see "course3" in the "Courses" "block"
-#    And I should see "course7" in the "Courses" "block"
-#    And I should see "course8" in the "Courses" "block"
-#    And I should see "course9" in the "Courses" "block"
-#    And I should see "coursea" in the "Courses" "block"
-#    And I should not see "course4" in the "Courses" "block"
-#    And I should not see "course5" in the "Courses" "block"
-#    And I should not see "course6" in the "Courses" "block"
-#    And I should not see "courseb" in the "Courses" "block"
+  Scenario: Completion filter. Hide courses without configured activity completion.
+
+    Given I log in as "student1"
+
+    When I am on "course1" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I am on "course3" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I click on "Mark as done" "button" in the "activity2" "activity"
+    And I am on "course4" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I am on "course6" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I click on "Mark as done" "button" in the "activity2" "activity"
+    And I am on "course7" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I am on "course9" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I click on "Mark as done" "button" in the "activity2" "activity"
+
+    And I follow "Dashboard"
+    And I turn editing mode on
+    And I add the "msmycourses" block
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Title                    | Courses               |
+      | Display                  | tiles                 |
+      | tiles per row            | 3                     |
+      | Number of shown elements | 11                    |
+      | Completion Filter        | all courses           |
+      | Region                   | content               |
+    And I press "Save changes"
+    And I configure the "Timeline" block
+    And I set the following fields to these values:
+      | Visible | No  |
+    And I press "Save changes"
+    And I configure the "Calendar" block
+    And I set the following fields to these values:
+      | Visible | No  |
+    And I press "Save changes"
+
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Completion Filter | uncompleted courses only |
+    And I press "Save changes"
+    Then I should see "course1" in the "Courses" "block"
+    And I should see "course2" in the "Courses" "block"
+    And I should see "course4" in the "Courses" "block"
+    And I should see "course5" in the "Courses" "block"
+    And I should see "course7" in the "Courses" "block"
+    And I should see "course8" in the "Courses" "block"
+    And I should see "coursea" in the "Courses" "block"
+    And I should not see "course3" in the "Courses" "block"
+    And I should not see "course6" in the "Courses" "block"
+    And I should not see "course9" in the "Courses" "block"
+    And I should not see "courseb" in the "Courses" "block"
+
+    And I configure the "Courses" block
+    And I expand all fieldsets
+    And I set the following fields to these values:
+      | hide courses without configured activity completion | Yes |
+    And I press "Save changes"
+    Then I should see "course1" in the "Courses" "block"
+    And I should see "course2" in the "Courses" "block"
+    And I should see "course4" in the "Courses" "block"
+    And I should see "course5" in the "Courses" "block"
+    And I should see "course7" in the "Courses" "block"
+    And I should see "course8" in the "Courses" "block"
+    And I should not see "course3" in the "Courses" "block"
+    And I should not see "course6" in the "Courses" "block"
+    And I should not see "course9" in the "Courses" "block"
+    And I should not see "coursea" in the "Courses" "block"
+    And I should not see "courseb" in the "Courses" "block"
+
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Completion Filter | uncompleted courses without activity progress |
+      | hide courses without configured activity completion | No |
+    And I press "Save changes"
+    Then I should see "course2" in the "Courses" "block"
+    And I should see "course5" in the "Courses" "block"
+    And I should see "course8" in the "Courses" "block"
+    And I should see "coursea" in the "Courses" "block"
+    And I should not see "course1" in the "Courses" "block"
+    And I should not see "course3" in the "Courses" "block"
+    And I should not see "course4" in the "Courses" "block"
+    And I should not see "course6" in the "Courses" "block"
+    And I should not see "course7" in the "Courses" "block"
+    And I should not see "course9" in the "Courses" "block"
+    And I should not see "courseb" in the "Courses" "block"
+
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Completion Filter | uncompleted courses with activity progress |
+    And I press "Save changes"
+    Then I should see "course1" in the "Courses" "block"
+    And I should see "course4" in the "Courses" "block"
+    And I should see "course7" in the "Courses" "block"
+    And I should not see "course2" in the "Courses" "block"
+    And I should not see "course3" in the "Courses" "block"
+    And I should not see "course5" in the "Courses" "block"
+    And I should not see "course6" in the "Courses" "block"
+    And I should not see "course8" in the "Courses" "block"
+    And I should not see "course9" in the "Courses" "block"
+    And I should not see "coursea" in the "Courses" "block"
+    And I should not see "courseb" in the "Courses" "block"
+
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Completion Filter | completed courses only |
+    And I press "Save changes"
+    Then I should see "course3" in the "Courses" "block"
+    And I should see "course6" in the "Courses" "block"
+    And I should see "course9" in the "Courses" "block"
+    And I should not see "course1" in the "Courses" "block"
+    And I should not see "course2" in the "Courses" "block"
+    And I should not see "course4" in the "Courses" "block"
+    And I should not see "course5" in the "Courses" "block"
+    And I should not see "course7" in the "Courses" "block"
+    And I should not see "course8" in the "Courses" "block"
+    And I should not see "coursea" in the "Courses" "block"
+    And I should not see "courseb" in the "Courses" "block"
+
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Completion Filter      | all courses |
+      | Categories to exclude  | Category B  |
+    And I press "Save changes"
+    Then I should see "course1" in the "Courses" "block"
+    And I should see "course2" in the "Courses" "block"
+    And I should see "course3" in the "Courses" "block"
+    And I should see "course7" in the "Courses" "block"
+    And I should see "course8" in the "Courses" "block"
+    And I should see "course9" in the "Courses" "block"
+    And I should see "coursea" in the "Courses" "block"
+    And I should not see "course4" in the "Courses" "block"
+    And I should not see "course5" in the "Courses" "block"
+    And I should not see "course6" in the "Courses" "block"
+    And I should not see "courseb" in the "Courses" "block"
 
   Scenario: Courserole.
 
@@ -445,13 +443,154 @@ Feature: Testing the msmycourses block. Testing "Filter configuration"
     And I should see "course 9" in the "Courses" "block"
     And I should see "course 10" in the "Courses" "block"
     And I should see "course 11" in the "Courses" "block"
-#
-##    And I set the following fields to these values:
-##      | Course Group Filter   | courses without group membership |
-#
-##    And I am on "course1" course homepage
-##    And pause
-##
-##    And I log in as "student2"
-##    And I am on "course1" course homepage
-##    And pause
+
+
+  Scenario: Group membership.
+
+    Given I log in as "teacher1"
+    And I am on the "course1" "Groups" page
+    And I press "Create group"
+    And I set the following fields to these values:
+      | name        | a |
+      | idnumber    | a |
+    And I press "Save changes"
+    And I press "Add/remove users"
+    And I set the field "addselect" to "(student1@test.test)"
+    And I press "Add"
+    And I set the field "addselect" to "(student2@test.test)"
+    And I press "Add"
+    And I set the field "addselect" to "(teacher1@test.test)"
+    And I press "Add"
+
+    And I am on the "course2" "Groups" page
+    And I press "Create group"
+    And I set the following fields to these values:
+      | name        | b |
+      | idnumber    | b |
+    And I press "Save changes"
+    And I press "Add/remove users"
+    And I set the field "addselect" to "(student1@test.test)"
+    And I press "Add"
+    And I set the field "addselect" to "(student2@test.test)"
+    And I press "Add"
+    And I set the field "addselect" to "(teacher1@test.test)"
+    And I press "Add"
+
+    And I am on the "course3" "Groups" page
+    And I press "Create group"
+    And I set the following fields to these values:
+      | name        | c |
+      | idnumber    | b |
+    And I press "Save changes"
+    And I press "Add/remove users"
+    And I set the field "addselect" to "(student1@test.test)"
+    And I press "Add"
+    And I set the field "addselect" to "(student2@test.test)"
+    And I press "Add"
+    And I set the field "addselect" to "(teacher1@test.test)"
+    And I press "Add"
+
+    And I am on "course1" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I am on "course3" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I click on "Mark as done" "button" in the "activity2" "activity"
+    And I am on "course4" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I am on "course6" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I click on "Mark as done" "button" in the "activity2" "activity"
+    And I am on "course7" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I am on "course9" course homepage
+    And I click on "Mark as done" "button" in the "activity1" "activity"
+    And I click on "Mark as done" "button" in the "activity2" "activity"
+
+    And I follow "Dashboard"
+    And I turn editing mode on
+    And I add the "msmycourses" block
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Title                    | Courses               |
+      | Display                  | tiles                 |
+      | tiles per row            | 3                     |
+      | Number of shown elements | 11                    |
+      | Completion Filter        | all courses           |
+      | Region                   | content               |
+    And I press "Save changes"
+    And I configure the "Timeline" block
+    And I set the following fields to these values:
+      | Visible | No  |
+    And I press "Save changes"
+    And I configure the "Calendar" block
+    And I set the following fields to these values:
+      | Visible | No  |
+    And I press "Save changes"
+
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Course Group Filter    | courses with group membership |
+      | Course Group ID-Number | a |
+    And I click on "Save changes" "button"
+    Then I should see "course1" in the "Courses" "block"
+    And I should not see "course2" in the "Courses" "block"
+    And I should not see "course3" in the "Courses" "block"
+    And I should not see "course4" in the "Courses" "block"
+    And I should not see "course5" in the "Courses" "block"
+    And I should not see "course6" in the "Courses" "block"
+    And I should not see "course7" in the "Courses" "block"
+    And I should not see "course8" in the "Courses" "block"
+    And I should not see "course9" in the "Courses" "block"
+    And I should not see "coursea" in the "Courses" "block"
+    And I should not see "courseb" in the "Courses" "block"
+
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Course Group Filter    | courses without group membership |
+      | Course Group ID-Number | a |
+    And I click on "Save changes" "button"
+    Then I should not see "course1" in the "Courses" "block"
+    And I should see "course2" in the "Courses" "block"
+    And I should see "course3" in the "Courses" "block"
+    And I should see "course4" in the "Courses" "block"
+    And I should see "course5" in the "Courses" "block"
+    And I should see "course6" in the "Courses" "block"
+    And I should see "course7" in the "Courses" "block"
+    And I should see "course8" in the "Courses" "block"
+    And I should see "course9" in the "Courses" "block"
+    And I should see "coursea" in the "Courses" "block"
+    And I should see "courseb" in the "Courses" "block"
+
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Course Group Filter    | courses with group membership |
+      | Course Group ID-Number | b |
+    And I click on "Save changes" "button"
+    Then I should see "course2" in the "Courses" "block"
+    And I should see "course3" in the "Courses" "block"
+    And I should not see "course1" in the "Courses" "block"
+    And I should not see "course4" in the "Courses" "block"
+    And I should not see "course5" in the "Courses" "block"
+    And I should not see "course6" in the "Courses" "block"
+    And I should not see "course7" in the "Courses" "block"
+    And I should not see "course8" in the "Courses" "block"
+    And I should not see "course9" in the "Courses" "block"
+    And I should not see "coursea" in the "Courses" "block"
+    And I should not see "courseb" in the "Courses" "block"
+
+    And I configure the "Courses" block
+    And I set the following fields to these values:
+      | Course Group Filter    | courses without group membership |
+      | Course Group ID-Number | b |
+    And I click on "Save changes" "button"
+    Then I should not see "course2" in the "Courses" "block"
+    And I should not see "course3" in the "Courses" "block"
+    And I should see "course1" in the "Courses" "block"
+    And I should see "course4" in the "Courses" "block"
+    And I should see "course5" in the "Courses" "block"
+    And I should see "course6" in the "Courses" "block"
+    And I should see "course7" in the "Courses" "block"
+    And I should see "course8" in the "Courses" "block"
+    And I should see "course9" in the "Courses" "block"
+    And I should see "coursea" in the "Courses" "block"
+    And I should see "courseb" in the "Courses" "block"
